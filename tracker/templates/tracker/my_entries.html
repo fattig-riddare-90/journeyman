@@ -1,0 +1,10 @@
+<h2>My Entries</h2>
+{% for entry in diaries %}
+<div>
+    <strong>{{ entry.date}}</strong>
+    <p>{{ entry.content|linebreaks }}</p>
+    <em>{{ entry.is_public|yesno:"Public, Private" }}</em>
+</div>
+{% empty %}
+    <p>You have no entries yet.</p>
+{% endfor %}
