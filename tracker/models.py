@@ -10,4 +10,4 @@ class DiaryEntry(models.Model):
     is_public = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.user.username} - {self.date}"
+        return f"{self.user.username} - {self.date} ({'Public' if self.is_public else 'Private'})"
