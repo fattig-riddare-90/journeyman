@@ -1,0 +1,9 @@
+<h2>Other users public entries</h2>
+{% for entry in entries %}
+    <div>
+        <strong>{{ entry.date}}</strong> {{ entry.user.username }}<br>
+        <p>{{ entry.content|linebreaks }}</p>
+    </div>
+{% empty %}
+    <p>No public entries yet</P>
+{% endfor %}
