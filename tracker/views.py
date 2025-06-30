@@ -19,7 +19,7 @@ def my_entries(request):
         entries = entries.filter(is_public=True)
     elif filter_value == 'private':
         entries = entries.filter(is_public=False)
-        
+
     return render(request, 'tracker/my_entries.html', {'entries': entries})
 
 @login_required
@@ -34,3 +34,23 @@ def create_entry(request):
     else:
         form = DiaryEntryForm()
     return render(request, 'tracker/create_entry.html', {'form': form})
+
+@login_required
+def edit_entry(request, pk):
+    entry = get_object_or_404(DiaryEntry, pk=pk, user=request.user)
+    if request.method == 'POST':
+        form = DiaryEntryForm(request.POST, instance=entry)
+        if form.is_valid():
+            form.save()
+            return redirect('my_entries')
+    else:
+        form = DiaryEntryForm(instance=entry)
+    return render(request, 'tracker/edit_entry.html', {'form': form})
+
+@login_required
+def delete_entry(request, pk):
+    entry = get_object_or_404(DiaryEntry, pk=pk, user=request.user)
+    if request.method == 'POST':
+        entry.delete()
+        return redirect('my_entries')
+    return render(request, 'tracker/confirm_delete.html', {'entry': entry})
