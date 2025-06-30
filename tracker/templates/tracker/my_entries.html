@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>My Entries</title>
@@ -8,7 +8,7 @@
     <h2>My Entries</h2>
 
     <!-- Filter + button to make a new entry -->
-    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1 rem;">
+    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
         <form method="get" action="">
             <label for="filter">Filter: </label>
             <select id="filter" name="filter" onchange="this.form.submit()">
@@ -22,21 +22,22 @@
          <a href="{% url 'create_entry' %}" class="btn btn-primary">Create New Entry</a>
     </div>
 
-    <!-- To display entries -->
-    {% for entry in entries %}
-        <div style="border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem;">
-            <h3>{{ entry.title }}
-            <strong>{{ entry.date}}</strong>
-            <p>{{ entry.content|linebreaks }}</p>
-            <em>{{ entry.is_public|yesno:"Public, Private" }}</em>
+<!-- To display entries -->
+{% for entry in entries %}
+    <div style="border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem;">
+        <h3>{{ entry.title }}</h3>
+        <strong>{{ entry.date}}</strong>
+        <p>{{ entry.content|linebreaks }}</p>
+        <em>{{ entry.is_public|yesno:"Public, Private" }}</em>
 
-            <!-- Edit and Delete links -->
-            <div style="margin-top: 0.5rem;">
-                <a href="{% url 'edit_entry' entry.id %}">Edit</a>
-                <a href="{% url 'delete_entry' entry.id %}">Delete</a>
-            </div>
-    {% empty %}
-        <p>You have no entries yet.</p>
-    {% endfor %}
+        <!-- Edit and Delete links -->
+        <div style="margin-top: 0.5rem;">
+            <a href="{% url 'edit_entry' entry.id %}">Edit</a>
+            <a href="{% url 'delete_entry' entry.id %}">Delete</a>
+        </div>
+    </div>
+{% empty %}
+    <p>You have no entries yet.</p>
+{% endfor %}
 </body>
 </html>
