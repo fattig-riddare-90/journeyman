@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Edit Entry</title>
+</head>
+<body>
+    <h2>Edit Entry</h2>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+    <a href="{% url 'my_entries' %}">Cancel</a>
+</form>
+    </body>
+</html>
