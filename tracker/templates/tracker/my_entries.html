@@ -1,6 +1,7 @@
 <h2>My Entries</h2>
 {% for entry in diaries %}
     <div>
+        <h3>{{ entri.title }}
         <strong>{{ entry.date}}</strong>
         <p>{{ entry.content|linebreaks }}</p>
         <em>{{ entry.is_public|yesno:"Public, Private" }}</em>

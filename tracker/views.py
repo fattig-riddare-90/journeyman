@@ -24,6 +24,6 @@ def create_entry(request):
             entry.user = request.user
             entry.save()
             return redirect('my_entries')
-        else:
-            form = DiaryEntryForm()
-        return render(request, 'tracker/create_entry.html', {'form': form})
+    else:
+        form = DiaryEntryForm()
+    return render(request, 'tracker/create_entry.html', {'form': form})

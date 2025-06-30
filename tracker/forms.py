@@ -4,4 +4,4 @@ from .models import DiaryEntry
 class DiaryEntryForm(forms.ModelForm):
     class Meta:
         model = DiaryEntry
-        fields = ['title', 'content', 'is_public']
+        fields = ['title', 'date', 'content', 'is_public']
