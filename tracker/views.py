@@ -13,6 +13,13 @@ def public_entries(request):
 @login_required
 def my_entries(request):
     entries = DiaryEntry.objects.filter(user=request.user)
+
+    filter_value = request.GET.get('filter')
+    if filter_value == 'public':
+        entries = entries.filter(is_public=True)
+    elif filter_value == 'private':
+        entries = entries.filter(is_public=False)
+        
     return render(request, 'tracker/my_entries.html', {'entries': entries})
 
 @login_required
