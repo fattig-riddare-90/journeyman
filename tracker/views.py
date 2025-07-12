@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import DiaryEntry
 from .forms import DiaryEntryForm
+from django.contrib.auth import logout
 
 # Create your views here.
 
@@ -54,3 +55,7 @@ def delete_entry(request, pk):
         entry.delete()
         return redirect('my_entries')
     return render(request, 'tracker/confirm_delete.html', {'entry': entry})
+
+def custom_logout(request):
+    logout(request)
+    return redirect('login')
