@@ -23,4 +23,5 @@ urlpatterns = [
     path('', include('tracker.urls')),
     path('accounts/logout/', views.custom_logout, name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/create_user/', views.create_new_user, name='register'),
 ]

@@ -1,5 +1,9 @@
 from django import forms
 from .models import DiaryEntry
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 class DiaryEntryForm(forms.ModelForm):
     class Meta:
@@ -8,3 +12,8 @@ class DiaryEntryForm(forms.ModelForm):
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),
         }
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
