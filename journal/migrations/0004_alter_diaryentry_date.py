@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tracker', '0003_alter_diaryentry_options_diaryentry_title'),
+        ('journal', '0003_alter_diaryentry_options_diaryentry_title'),
     ]
 
     operations = [

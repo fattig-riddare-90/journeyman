@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('tracker', '0002_diaryentry_is_public'),
+        ('journal', '0002_diaryentry_is_public'),
     ]
 
     operations = [

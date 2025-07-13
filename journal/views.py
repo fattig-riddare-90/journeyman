@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import DiaryEntry
-from .forms import DiaryEntryForm, CustomUserCreationForm
+from .forms import DiaryEntryForm
 from django.contrib.auth import logout
 
 # Create your views here.
@@ -9,7 +9,7 @@ from django.contrib.auth import logout
 @login_required
 def public_entries(request):
     entries = DiaryEntry.objects.filter(is_public=True).exclude(user=request.user)
-    return render(request, 'tracker/public_entries.html', {'entries': entries})
+    return render(request, 'journal/public_entries.html', {'entries': entries})
 
 @login_required
 def my_entries(request):
@@ -21,7 +21,7 @@ def my_entries(request):
     elif filter_value == 'private':
         entries = entries.filter(is_public=False)
 
-    return render(request, 'tracker/my_entries.html', {'entries': entries})
+    return render(request, 'journal/my_entries.html', {'entries': entries})
 
 @login_required
 def create_entry(request):
@@ -34,7 +34,7 @@ def create_entry(request):
             return redirect('my_entries')
     else:
         form = DiaryEntryForm()
-    return render(request, 'tracker/create_entry.html', {'form': form})
+    return render(request, 'journal/create_entry.html', {'form': form})
 
 @login_required
 def edit_entry(request, pk):
@@ -46,7 +46,7 @@ def edit_entry(request, pk):
             return redirect('my_entries')
     else:
         form = DiaryEntryForm(instance=entry)
-    return render(request, 'tracker/edit_entry.html', {'form': form})
+    return render(request, 'journal/edit_entry.html', {'form': form})
 
 @login_required
 def delete_entry(request, pk):
@@ -54,21 +54,4 @@ def delete_entry(request, pk):
     if request.method == 'POST':
         entry.delete()
         return redirect('my_entries')
-    return render(request, 'tracker/confirm_delete.html', {'entry': entry})
-
-def custom_logout(request):
-    logout(request)
-    return redirect('login')
-
-def create_new_user(request):
-    if request.method=='POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid:
-            user = form.save(commit=False)
-            user.save()
-            return redirect('login')
-        else: 
-            print("Errors:", form.errors)
-    else:
-        form=CustomUserCreationForm()
-    return render(request, 'tracker/create_user.html', {'form':form})
+    return render(request, 'journal/confirm_delete.html', {'entry': entry})
