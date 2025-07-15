@@ -1,0 +1,39 @@
+body {
+    background-color: #f8f9fa;
+}
+
+header {
+    background-color: #556B2F;
+    color: #FDF5E6;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+nav {
+    background-color: #556B2F;
+    padding: 0.75rem 1rem;
+}
+
+.navbar-btn {
+    background-color: #FDF5E6;
+    color: #333;
+    border: none;
+}
+
+.navbar-btn:hover {
+    background-color: #e6decf;
+}
+
+.logout-btn {
+    border: 2px solid #dc3545;
+    color: #dc3545;
+    background-color: #FDF5E6;
+}
+
+.logout-btn:hover {
+    background-color: #dc3545;
+    color: white;
+}

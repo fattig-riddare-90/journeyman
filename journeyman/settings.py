@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'journeyman',
     'users',
     'journal',
     'django.contrib.admin',
