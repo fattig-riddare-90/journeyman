@@ -1,19 +1,16 @@
-<!DOCTYPE html>
-<html>
+{% extends 'journeyman/base.html' %}
+{% block title %}Confirm Delete{% endblock %}
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Confirm Delete</title>
-</head>
-
-<body>
-    <h2>Delete Entry</h2>
-    <p>Are you sure you want to delete "<strong>{{ entry.title }}</strong>"?</p>
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit">Yes, delete</button>
-        <a href="{% url 'my_entries' %}">Cancel</a>
-    </form>
-</body>
-
-</html>
+{% block content %}
+<div class="d-flex justify-content-center align-items-center" style="height: 70vh;">
+    <div class="text-center border p-4 rounded bg-light shadow-sm" style="min-width: 320px;">
+        <h2>Delete Entry</h2>
+        <p>Are you sure you want to delete "<strong>{{ entry.title }}</strong>"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger me-2">Yes, delete</button>
+            <a href="{% url 'my_entries' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

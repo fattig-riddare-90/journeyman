@@ -1,19 +1,25 @@
-<!DOCTYPE html>
-<html>
+{% extends "journeyman/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
 
-<head>
-    <meta charset="UTF-8" />
-    <title>Edit Entry</title>
-</head>
+{% block title %}Edit Entry{% endblock %}
 
-<body>
-    <h2>Edit Entry</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save</button>
-        <a href="{% url 'my_entries' %}">Cancel</a>
-    </form>
-</body>
+{% block content %}
+  <h2>Edit Entry</h2>
+  <form method="post" class="mt-4">
+    {% csrf_token %}
+    
+    {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field|add_class:"form-control" }}
+        {% if field.errors %}
+          <div class="text-danger small">{{ field.errors }}</div>
+        {% endif %}
+      </div>
+    {% endfor %}
 
-</html>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a href="{% url 'my_entries' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}
