@@ -1,3 +1,11 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+
 body {
     background-color: #f8f9fa;
 }
@@ -23,6 +31,11 @@ nav {
     border: none;
 }
 
+.btn-primary {
+    background-color: #556B2F;
+    border-color: #FDF5E6;
+}
+
 .navbar-btn:hover {
     background-color: #e6decf;
 }
@@ -36,4 +49,52 @@ nav {
 .logout-btn:hover {
     background-color: #dc3545;
     color: white;
+}
+
+.bg-mossgreen {
+    background-color: #556B2F; 
+}
+
+.text-beige {
+    color: #FDF5E6;
+}
+
+.btn-mossgreen {
+    background-color: #556B2F;
+    color: #FDF5E6;
+    border: none;
+}
+
+.btn-mossgreen:hover {
+    background-color: #465823;
+    color: #FDF5E6;
+}
+
+.card {
+    background-color: #FDF5E6; 
+}
+
+.entry-container {
+    background-color: #FDF5E6;
+    border: 1px solid #465823;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+}
+
+.entry-actions a {
+    margin-right: 1rem;
+    color: #556B2F;
+    text-decoration: none;
+}
+
+.entry-actions a:hover {
+    text-decoration: underline;
+}
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
 }

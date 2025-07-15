@@ -21,3 +21,6 @@ def create_new_user(request):
     else:
         form=CustomUserCreationForm()
     return render(request, 'users/create_user.html', {'form':form})
+
+def home(request):
+    return render(request, 'users/start.html')

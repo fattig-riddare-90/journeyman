@@ -1,0 +1,12 @@
+{% extends 'journeyman/base.html' %}
+
+{% block content %}
+<div class="d-flex flex-column justify-content-center align-items-center vh-100 w-100 text-center" style="background-color:#556B2F; color:#f5f1e3;">
+    <h1 class="mb-4 display-3 fw-bold">JOURNEYMAN</h1>
+    <p class="mb-5 fs-4">Welcome to Journeyman — your personal diary and journal platform.</p>
+    <div>
+        <a href="{% url 'login' %}" class="btn btn-lg btn-outline-light me-3 px-5">Login</a>
+        <a href="{% url 'register' %}" class="btn btn-lg btn-outline-light me-3 px-5">Register</a>
+    </div>
+</div>
+{% endblock %}
