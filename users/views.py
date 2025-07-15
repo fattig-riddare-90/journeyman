@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 
 def custom_logout(request):
     logout(request)
-    return redirect('login')
+    return redirect('/')
 
 def create_new_user(request):
     if request.method=='POST':
