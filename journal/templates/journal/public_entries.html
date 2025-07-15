@@ -1,9 +1,20 @@
-<h2>Other users public entries</h2>
-{% for entry in entries %}
-    <div>
-        <strong>{{ entry.date}}</strong> {{ entry.user.username }}<br>
-        <p>{{ entry.content|linebreaks }}</p>
-    </div>
-{% empty %}
-    <p>No public entries yet</P>
-{% endfor %}
+{% extends 'journeyman/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Global public entries</h2>
+
+    {% for entry in entries %}
+        <div class="card mb-3 shadow-sm">
+            <div class="card-header">
+                <strong>{{ entry.date }}</strong> by <em>{{ entry.user.username }}</em>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ entry.content|linebreaks }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <p>No public entries yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}
