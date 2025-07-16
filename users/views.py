@@ -10,7 +10,7 @@ def custom_logout(request):
     return redirect('/')
 
 def create_new_user(request):
-    if request.method=='POST':
+    if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
@@ -18,9 +18,10 @@ def create_new_user(request):
             return redirect('login')
         else:
             print("Errors:", form.errors)
+            return render(request, 'users/create_user.html', {'form': form})
     else:
-        form=CustomUserCreationForm()
-    return render(request, 'users/create_user.html', {'form':form})
+        form = CustomUserCreationForm()
+    return render(request, 'users/create_user.html', {'form': form})
 
 def home(request):
     return render(request, 'users/start.html')
