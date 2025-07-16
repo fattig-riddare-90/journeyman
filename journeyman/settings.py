@@ -23,7 +23,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='127.0.0.1,localhost', cast=Csv())
 
-# Resten av dina inställningar utan ändring, ex:
 
 INSTALLED_APPS = [
     'whitenoise',
@@ -69,10 +68,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'journeyman.wsgi.application'
 
+DATABASE_URL = config("DATABASE_URL", default=None)
+
+if not DATABASE_URL:
+    raise ValueError("DATABASE_URL must be set – PostgreSQL is required.")
+
 DATABASES = {
-        'default': dj_database_url.config(
-            default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
-    )
+    "default": dj_database_url.parse(
+        DATABASE_URL
+        conn_max_age=600,
+        ssl_require=True
+        )
 }
 
 AUTH_PASSWORD_VALIDATORS = [
