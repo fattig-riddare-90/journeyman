@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class DiaryEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateField()
-    title = models.CharField(max_length=100, default='Untitled')
+    title = models.CharField(max_length=200)
     content = models.TextField()
     is_public = models.BooleanField(default=False)
 
