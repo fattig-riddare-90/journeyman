@@ -2,6 +2,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from users.forms import CustomUserCreationForm
 from django.contrib.auth import logout
+import logging
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 
@@ -17,8 +20,7 @@ def create_new_user(request):
             user.save()
             return redirect('login')
         else:
-            print("Errors:", form.errors)
-            return render(request, 'users/create_user.html', {'form': form})
+            logger.error("Form errors: %s", form.errors)
     else:
         form = CustomUserCreationForm()
     return render(request, 'users/create_user.html', {'form': form})
