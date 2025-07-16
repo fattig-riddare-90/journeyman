@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import DiaryEntry
 from .forms import DiaryEntryForm
 from django.contrib.auth import logout
+from django.contrib import messages
 
 # Create your views here.
 
@@ -31,6 +32,7 @@ def create_entry(request):
             entry = form.save(commit=False)
             entry.user = request.user
             entry.save()
+            messages.success(request, "New entry created successfully.")
             return redirect('my_entries')
     else:
         form = DiaryEntryForm()
@@ -43,6 +45,7 @@ def edit_entry(request, pk):
         form = DiaryEntryForm(request.POST, instance=entry)
         if form.is_valid():
             form.save()
+            messages.success(request, "Entry updated successfully.")
             return redirect('my_entries')
     else:
         form = DiaryEntryForm(instance=entry)
@@ -53,5 +56,6 @@ def delete_entry(request, pk):
     entry = get_object_or_404(DiaryEntry, pk=pk, user=request.user)
     if request.method == 'POST':
         entry.delete()
+        messages.success(request, "Entry deleted successfully.")
         return redirect('my_entries')
     return render(request, 'journal/confirm_delete.html', {'entry': entry})
