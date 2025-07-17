@@ -20,5 +20,6 @@ class DiaryEntryForm(forms.ModelForm):
                 field.widget.attrs['class'] = 'form-check-input'
             else:
                 field.widget.attrs['class'] = 'form-control'
-                field.widget.attrs['placeholder'] = f'Enter {field.label.lower()}'
+                if field_name != 'date':
+                    field.widget.attrs['placeholder'] = f'Enter {field.label.lower()}'
     
