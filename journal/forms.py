@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 
+
 class DiaryEntryForm(forms.ModelForm):
     class Meta:
         model = DiaryEntry
@@ -21,5 +22,4 @@ class DiaryEntryForm(forms.ModelForm):
             else:
                 field.widget.attrs['class'] = 'form-control'
                 if field_name != 'date':
-                    field.widget.attrs['placeholder'] = f'Enter {field.label.lower()}'
-    
+                    field.widget.attrs['placeholder'] = f'Enter {field.label.lower()}'  # noqa

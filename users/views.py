@@ -7,6 +7,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
 # Create your views here.
 
 def custom_logout(request):
@@ -14,19 +15,21 @@ def custom_logout(request):
     messages.info(request, "You have been logged out.")
     return redirect('/')
 
+
 def create_new_user(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
-            messages.success(request, "Your account has been created successfully!")
+            messages.success(request, "Account creation successful!")
             return redirect('login')
         else:
             logger.error("Form errors: %s", form.errors)
     else:
         form = CustomUserCreationForm()
     return render(request, 'users/create_user.html', {'form': form})
+
 
 def home(request):
     return render(request, 'users/start.html')

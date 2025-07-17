@@ -5,12 +5,19 @@ from .forms import DiaryEntryForm
 from django.contrib.auth import logout
 from django.contrib import messages
 
+
 # Create your views here.
+
 
 @login_required
 def public_entries(request):
-    entries = DiaryEntry.objects.filter(is_public=True).exclude(user=request.user)
+    entries = (
+        DiaryEntry.objects
+        .filter(is_public=True)
+        .exclude(user=request.user)
+    )
     return render(request, 'journal/public_entries.html', {'entries': entries})
+
 
 @login_required
 def my_entries(request):
@@ -23,6 +30,7 @@ def my_entries(request):
         entries = entries.filter(is_public=False)
 
     return render(request, 'journal/my_entries.html', {'entries': entries})
+
 
 @login_required
 def create_entry(request):
@@ -38,6 +46,7 @@ def create_entry(request):
         form = DiaryEntryForm()
     return render(request, 'journal/create_entry.html', {'form': form})
 
+
 @login_required
 def edit_entry(request, pk):
     entry = get_object_or_404(DiaryEntry, pk=pk, user=request.user)
@@ -50,6 +59,7 @@ def edit_entry(request, pk):
     else:
         form = DiaryEntryForm(instance=entry)
     return render(request, 'journal/edit_entry.html', {'form': form})
+
 
 @login_required
 def delete_entry(request, pk):
